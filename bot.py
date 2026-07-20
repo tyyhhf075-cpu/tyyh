@@ -1,4 +1,4 @@
-﻿from telegram import Update
+from telegram import Update
 from telegram.constants import ChatAction, ParseMode
 from telegram.constants import ChatAction
 from telegram.ext import (
@@ -2048,21 +2048,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    msg = update.message.text
+    msg = update.message.text or ""
 
-    # في المجموعات يرد فقط إذا ذُكر اسمه
+    # في المجموعات يرد فقط إذا ذُكر اسمه أو تم الرد عليه
     if update.effective_chat.type in ["group", "supergroup"]:
 
-     is_reply = (
-        update.message.reply_to_message is not None
-        and update.message.reply_to_message.from_user.id == context.bot.id
-    )
+        is_reply = (
+            update.message.reply_to_message is not None
+            and update.message.reply_to_message.from_user.id == context.bot.id
+        )
 
-    words = msg.lower().split()
-    called = ("mina" in words) or ("مينا" in msg)
+        words = msg.lower().split()
+        called = (
+            "mina" in words
+            or "مينا" in msg
+        )
 
-    if not is_reply and not called:
-        return
+        if not is_reply and not called:
+            return
 
     if user_id not in conversations:
         conversations[user_id] = [
