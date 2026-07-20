@@ -10,17 +10,18 @@ from telegram.ext import (
 )
 from tavily import TavilyClient
 from openai import OpenAI
-
-BOT_TOKEN = "8675153766:AAHErHz5Fcyu9c55_4AZJEe6T26A96xqPQI"
+import os
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 client = OpenAI(
-    api_key="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",
-    base_url="https://models.github.ai/inference"
+    api_key=os.getenv("GITHUB_TOKEN"),
+    base_url=os.getenv("GITHUB_BASE_URL")
 )
 
 conversations = {}
+
 tavily = TavilyClient(
-    api_key="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"
+    api_key=os.getenv("TAVILY_API_KEY")
 )
 SYSTEM_PROMPT = """
 اسمك Mina.
