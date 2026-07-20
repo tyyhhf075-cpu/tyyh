@@ -11,7 +11,7 @@ from telegram.ext import (
 from tavily import TavilyClient
 from openai import OpenAI
 
-BOT_TOKEN = "8675153766:AAE5vGIeqMsQoprKdBadxI4BdeX7gf29vbE"
+BOT_TOKEN = "8675153766:AAHErHz5Fcyu9c55_4AZJEe6T26A96xqPQI"
 
 client = OpenAI(
     api_key="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",
